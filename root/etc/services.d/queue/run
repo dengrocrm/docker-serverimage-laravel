@@ -1,0 +1,2 @@
+#!/usr/bin/with-contenv bash
+exec s6-setuidgid abc /usr/bin/php /app/src/artisan queue:listen --sleep=3 --tries=3 --queue="default"

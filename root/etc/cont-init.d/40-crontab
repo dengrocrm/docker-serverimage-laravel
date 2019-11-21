@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+
+# set cronjob
+crontab -u root /defaults/abc
