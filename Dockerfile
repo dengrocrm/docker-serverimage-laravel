@@ -85,6 +85,7 @@ RUN \
     mkdir -p \
         /app/src \
         /config \
+        /data \
         /defaults && \
     # Configure Nginx.
     echo 'fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;' >> /etc/nginx/fastcgi_params && \
