@@ -71,6 +71,11 @@ RUN \
         php7-xmlwriter \
         php7-zip \
         php7-zlib \
+        php7-pdo_sqlite \
+        php7-sqlite3 \
+        php7-xdebug \
+        redis \
+        sqlite \
         yarn && \
     # Add s6 overlay.
     curl -o \
@@ -104,4 +109,6 @@ COPY root/ /
 # Expose ports.
 EXPOSE 80 443
 
-ENTRYPOINT ["/init"]
+WORKDIR /app/src
+
+# ENTRYPOINT ["/init"]

@@ -1,0 +1,31 @@
+#!/usr/bin/with-contenv bash
+
+# Check if we are in debug mode and enable xdebug if so
+DEBUG=${DEBUG:-false}
+if [ "${DEBUG}" == "true" ]; then
+	echo "zend_extension=xdebug.so" > /etc/php7/conf.d/xdebug.ini
+	echo "xdebug.remote_enable=1" >> /etc/php7/conf.d/xdebug.ini
+	echo "xdebug.remote_autostart=off" >> /etc/php7/conf.d/xdebug.ini
+	echo "xdebug.show_error_trace=1" >> /etc/php7/conf.d/xdebug.ini
+	echo "xdebug.remote_autostart=0" >> /etc/php7/conf.d/xdebug.ini
+	echo "xdebug.file_link_format=phpstorm://open?%f:%l" >> /etc/php7/conf.d/xdebug.ini
+    echo "xdebug.max_nesting_level=1000" >> /etc/php7/conf.d/xdebug.ini
+
+	if [ ! -z "$XDEBUG_IDEKEY" ]; then
+		echo "xdebug.idekey=${XDEBUG_IDEKEY}" >> /etc/php7/conf.d/xdebug.ini
+    else
+    	echo "xdebug.idekey=PHPSTORM" >> /etc/php7/conf.d/xdebug.ini
+    fi
+	
+	if [ ! -z "$XDEBUG_PORT" ]; then
+		echo "xdebug.remote_port=${XDEBUG_PORT}" >> /etc/php7/conf.d/xdebug.ini
+    else
+    	echo "xdebug.remote_port=9000" >> /etc/php7/conf.d/xdebug.ini
+    fi
+
+	if [ ! -z "$XDEBUG_HOST" ]; then
+        echo "xdebug.remote_host=${XDEBUG_HOST}" >> /etc/php7/conf.d/xdebug.ini
+    else
+        echo "xdebug.remote_connect_back=1" >> /etc/php7/conf.d/xdebug.ini
+    fi
+fi
