@@ -1,6 +1,7 @@
 FROM alpine:edge
 MAINTAINER dandengro
 LABEL maintainer="dandengro"
+LABEL com.circleci.preserve-entrypoint=true
 
 # Set version for s6 overlay.
 ARG OVERLAY_VERSION="v1.21.7.0"
